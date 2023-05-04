@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _speedMove;
+    [SerializeField] private float _jumpForce;
 
     private bool _lookingRight;
     private Rigidbody2D _rigidbody;
@@ -23,18 +24,24 @@ public class PlayerMove : MonoBehaviour
         if (InputSystem == null) return;
 
         InputHorizontal = InputSystem.GetHorizontal();
+        IInputSystem.EventDownSpace += Jumping;
         Move();
         Flipping();
     }
 
     private void Move()
     {
-        _rigidbody.velocity = new Vector3(InputHorizontal * Acceleration(), _rigidbody.velocity.y);
+        SetVelocity(InputHorizontal * Acceleration(), _rigidbody.velocity.y);
     }
 
-    private float Jumpint()
+    private void Jumping()
     {
-        return 0;
+        SetVelocity(_rigidbody.velocity.x, _jumpForce);
+    }
+
+    private void SetVelocity(float x, float y, float z = 0)
+    {
+        _rigidbody.velocity = new Vector3(x, y, z);
     }
 
     private float Acceleration()

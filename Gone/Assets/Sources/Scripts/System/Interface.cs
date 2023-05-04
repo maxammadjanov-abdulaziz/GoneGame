@@ -7,6 +7,7 @@ public interface IInputSystem
     public float GetVertical();
 
     public static Action EventDownE;
+    public static Action EventDownSpace;
 }
 
 public interface IItem

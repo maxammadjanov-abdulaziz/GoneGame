@@ -8,6 +8,7 @@ public class InputPC : MonoBehaviour, IInputSystem
     private void Update()
     {
        if(Input.GetKeyDown(KeyCode.E)) IInputSystem.EventDownE?.Invoke(); 
+       if(Input.GetKeyDown(KeyCode.Space)) IInputSystem.EventDownSpace?.Invoke(); 
     }
 
 }
