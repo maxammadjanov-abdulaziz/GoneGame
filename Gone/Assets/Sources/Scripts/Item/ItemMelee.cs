@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class ItemMelee : IItem,  IItemMelee
+public class ItemMelee : ItemObject,  IItemMelee
 {
-    public int Damage { get; set; }
-    public int SpeedAttack { get; set; }
-    public int RadiusDamage { get; set; }
+    [field: SerializeField] public int Damage { get; set; }
+    [field: SerializeField] public int SpeedAttack { get; set; }
+    [field: SerializeField] public int RadiusDamage { get; set; }
 
     void Start()
     {
-        
+        InitializeSprite();
     }
 
     void Update()

@@ -10,18 +10,28 @@ public interface IInputSystem
     public static Action EventDownSpace;
 }
 
-public class IItem: MonoBehaviour
+public class ItemObject: MonoBehaviour, IItem
 {
-    public int Strength { get; set; }
-    public int Break { get; set; }
+   [field: SerializeField] public int Strength { get; set; }
+   [field: SerializeField] public int Break { get; set; }
+    public Sprite MySprite { get; set; }
 
-    public virtual void BreaksDown()
+    protected void InitializeSprite()
+    {
+        MySprite = GetComponent<SpriteRenderer>().sprite;
+    }
+
+    protected virtual void BreaksDown()
     {
          Strength -= Break;
     }
-
-
 }
+
+public interface IItem
+{
+    public Sprite MySprite { get; set; }
+}
+
 
 public interface IItemMelee
 {

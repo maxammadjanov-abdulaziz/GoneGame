@@ -7,7 +7,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] private GameObject _buttonInteraction;
     [SerializeField] private LayerMask _layeInteraction;
 
-    protected GameObject _currentObject;
+    private ItemObject _currentObject;
 
     private void Start()
     {
@@ -24,9 +24,9 @@ public class Interaction : MonoBehaviour
 
         if (tempObject)
         {
-            if (tempObject.TryGetComponent(out IItem item))
+            if (tempObject.TryGetComponent(out ItemObject item))
             {
-                _currentObject = tempObject.gameObject;
+                _currentObject = item;
                 SetPositionButtonInteraction(_currentObject.transform.position, _currentObject.transform.localScale.y);
                 SetActiveButtonInteraction(true);
             }
@@ -42,7 +42,14 @@ public class Interaction : MonoBehaviour
     {
         if (_currentObject == null) return;
 
-        Destroy(_currentObject.gameObject);
+        if (!Inventory.Instance)
+        {
+            Debug.LogError("Inventory has not been initialized");
+            return;
+        }
+
+        if (Inventory.Instance.TryAddItem(_currentObject))
+            Destroy(_currentObject.gameObject);
     }
 
 

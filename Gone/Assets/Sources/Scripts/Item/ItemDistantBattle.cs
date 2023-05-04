@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class ItemDistantBattle : IItem, IItemDistantBattle
+public class ItemDistantBattle : ItemObject, IItemDistantBattle
 {
-    public int Damage { get; set; }
-    public int SpeedBullet { get; set; }
-    public int TimeReload { get; set; }
-    public GameObject Bullet { get; set; }
+    [field: SerializeField] public int Damage { get; set; }
+    [field: SerializeField] public int SpeedBullet { get; set; }
+    [field: SerializeField] public int TimeReload { get; set; }
+    [field: SerializeField] public GameObject Bullet { get; set; }
 
     void Start()
     {
-        
+        InitializeSprite();
     }
 
     void Update()
