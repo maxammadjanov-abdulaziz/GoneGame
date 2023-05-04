@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Sprite _spriteNull;
+    [SerializeField] private GameObject _panelInventory;
     [SerializeField] private Image[] _imageSlots;
 
     public void Start()
@@ -14,8 +15,8 @@ public class InventoryUI : MonoBehaviour
             Debug.LogError("Array length does not match");
 
         Inventory.Instance.ItemEvent += RefreshUI;
-
-        gameObject.SetActive(false);
+        IInputSystem.EventDownTab += ActivatorPanelInventory;
+        SetActivePanelInventory(false);
     }
 
     public void RefreshUI()
@@ -30,5 +31,14 @@ public class InventoryUI : MonoBehaviour
                 ? tempInventory.SlotsItem[i].MySprite 
                 : _spriteNull;
         }
+    }
+
+    private void ActivatorPanelInventory()
+    {
+        SetActivePanelInventory(!_panelInventory.activeSelf);
+    }
+    private void SetActivePanelInventory(bool active)
+    {
+        _panelInventory.SetActive(active);
     }
 }

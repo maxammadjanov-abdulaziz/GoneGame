@@ -6,6 +6,7 @@ public class ItemMelee : ItemObject,  IItemMelee
     [field: SerializeField] public int SpeedAttack { get; set; }
     [field: SerializeField] public int RadiusDamage { get; set; }
 
+
     void Start()
     {
         InitializeSprite();
@@ -21,4 +22,8 @@ public class ItemMelee : ItemObject,  IItemMelee
       
     }
 
+    void IItemMelee.Attack()
+    {
+        throw new System.NotImplementedException();
+    }
 }

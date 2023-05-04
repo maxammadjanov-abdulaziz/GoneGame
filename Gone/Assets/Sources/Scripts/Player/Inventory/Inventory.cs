@@ -31,7 +31,6 @@ public class Inventory : MonoBehaviour
             {
                 SlotsItem[i] = item;
                 ItemEventInvoke();
-                Debug.Log(SlotsItem[i]);
                  return true;
             }
         }

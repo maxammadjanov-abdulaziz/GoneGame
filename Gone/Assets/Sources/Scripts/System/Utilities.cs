@@ -8,23 +8,17 @@ public interface IInputSystem
 
     public static Action EventDownE;
     public static Action EventDownSpace;
+    public static Action EventDownTab;
 }
 
-public class ItemObject: MonoBehaviour, IItem
+public class ItemObject : MonoBehaviour, IItem
 {
    [field: SerializeField] public int Strength { get; set; }
    [field: SerializeField] public int Break { get; set; }
-    public Sprite MySprite { get; set; }
+   public Sprite MySprite { get; set; }
 
-    protected void InitializeSprite()
-    {
-        MySprite = GetComponent<SpriteRenderer>().sprite;
-    }
-
-    protected virtual void BreaksDown()
-    {
-         Strength -= Break;
-    }
+    protected void InitializeSprite() => MySprite = GetComponent<SpriteRenderer>().sprite;
+    protected virtual void BreaksDown() => Strength -= Break;
 }
 
 public interface IItem
