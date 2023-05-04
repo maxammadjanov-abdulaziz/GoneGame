@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -8,6 +6,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int _slotsCount;
 
     public IItem[] SlotsItem { get; private set; }
+    public IItemMelee SlotEquipItemMelee { get; private set; }
+    public IItemDistantBattle SlotEquipItemDistantBattle { get; private set; }
+
     public static Inventory Instance;
 
     public event Action ItemEvent;
@@ -42,6 +43,15 @@ public class Inventory : MonoBehaviour
         if (slotID >= SlotsItem.Length) return;
 
         SlotsItem[slotID] = null;
+        ItemEventInvoke();
+    }
+
+    public void EquipItem(int slotID)
+    {
+        if (slotID >= SlotsItem.Length) return;
+
+        
+
         ItemEventInvoke();
     }
 

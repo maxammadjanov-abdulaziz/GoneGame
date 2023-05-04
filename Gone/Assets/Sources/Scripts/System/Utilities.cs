@@ -43,3 +43,10 @@ public interface IItemDistantBattle
     public GameObject Bullet { get; set; }
     public void Shot();
 }
+
+public interface IItemThrown
+{
+    public int Damage { get; set; }
+    public int SpeedFlight { get; set; }
+    public void Throw();
+}
