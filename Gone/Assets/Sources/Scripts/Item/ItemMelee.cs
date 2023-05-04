@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemMelee : MonoBehaviour, IItem,  IItemMelee
+public class ItemMelee : IItem,  IItemMelee
 {
     public int Damage { get; set; }
     public int SpeedAttack { get; set; }
@@ -17,6 +15,7 @@ public class ItemMelee : MonoBehaviour, IItem,  IItemMelee
     {
         
     }
+
     public void Attack()
     {
       

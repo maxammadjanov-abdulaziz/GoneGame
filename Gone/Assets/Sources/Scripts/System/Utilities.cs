@@ -10,8 +10,16 @@ public interface IInputSystem
     public static Action EventDownSpace;
 }
 
-public interface IItem
+public class IItem: MonoBehaviour
 {
+    public int Strength { get; set; }
+    public int Break { get; set; }
+
+    public virtual void BreaksDown()
+    {
+         Strength -= Break;
+    }
+
 
 }
 

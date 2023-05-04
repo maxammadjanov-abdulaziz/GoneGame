@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttacking : MonoBehaviour
 {
+
+
+    private IItemMelee _itemMelee;
+    private IItemDistantBattle _itemDistantBattle;
 
     void Start()
     {

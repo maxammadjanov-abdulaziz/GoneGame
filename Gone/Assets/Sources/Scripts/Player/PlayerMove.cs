@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _speedMove;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private LayerMask _groundLayer;
 
     private bool _lookingRight;
     private Rigidbody2D _rigidbody;
@@ -36,6 +37,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Jumping()
     {
+        if(Ground—hecker() == false) return;
+
         SetVelocity(_rigidbody.velocity.x, _jumpForce);
     }
 
@@ -62,10 +65,28 @@ public class PlayerMove : MonoBehaviour
         _lookingRight = !_lookingRight;
     }
 
+    private bool Ground—hecker()
+    {
+        if (Physics2D.Raycast(transform.position, -Vector3.up, transform.localScale.y + 0.1f, _groundLayer))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void InitializationInput()
     {
         if (TryGetComponent(out IInputSystem input)) InputSystem = input;
         else Debug.LogError("The object does not have a script responsible for managing");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, -Vector3.up * (transform.localScale.y + 0.1f));
     }
 
 
